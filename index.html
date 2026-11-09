@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glassy Navbar</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Framer-friendly: sirf flexbox, koi ::before/::after nahi, koi CSS variables nahi, SVGs mein fixed colors */
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #EEF5FC;
+    min-height: 100vh;
+  }
+
+  /* Background section (glass effect dikhane ke liye) */
+  .page {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 24px;
+  }
+
+  .blob-blue {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    border-radius: 50%;
+    background: #4DA3FF;
+    filter: blur(90px);
+    opacity: 0.55;
+    top: -120px;
+    left: 8%;
+  }
+
+  .blob-yellow {
+    position: absolute;
+    width: 360px;
+    height: 360px;
+    border-radius: 50%;
+    background: #FFD84D;
+    filter: blur(90px);
+    opacity: 0.5;
+    top: -60px;
+    right: 12%;
+  }
+
+  .blob-purple {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: #A98BFF;
+    filter: blur(100px);
+    opacity: 0.35;
+    top: 220px;
+    left: 42%;
+  }
+
+  /* ===== NAVBAR (ye copy karna hai) ===== */
+  .navbar {
+    position: relative;
+    z-index: 10;
+    width: 1080px;
+    height: 68px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px 0 16px;
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(15, 40, 80, 0.08);
+  }
+
+  /* Logo */
+  .brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+
+  .logo-box {
+    width: 38px;
+    height: 38px;
+    border-radius: 11px;
+    background: linear-gradient(180deg, #2A9BFF 0%, #0A6CF0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(10, 108, 240, 0.35);
+  }
+
+  .logo-letter {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1;
+  }
+
+  .brand-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #111827;
+    letter-spacing: -0.3px;
+  }
+
+  /* Links */
+  .nav-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    background: rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.9);
+    border-radius: 14px;
+  }
+
+  .nav-link {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4B5563;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+  }
+
+  .nav-link-active {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0A6CF0;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: #FFFFFF;
+    box-shadow: 0 1px 4px rgba(15, 40, 80, 0.08);
+  }
+
+  /* Right side buttons */
+  .nav-actions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-ghost {
+    font-size: 14px;
+    font-weight: 500;
+    color: #111827;
+    text-decoration: none;
+    padding: 10px 16px;
+    border-radius: 12px;
+  }
+
+  .btn-primary {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #2A9BFF 0%, #0A6CF0 100%);
+    box-shadow: 0 4px 14px rgba(10, 108, 240, 0.35);
+  }
+
+  /* Hover (sirf browser preview ke liye; Framer mein hover khud lagana) */
+  .nav-link:hover { color: #111827; background: rgba(255,255,255,0.7); }
+  .btn-ghost:hover { background: rgba(255,255,255,0.6); }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <div class="blob-blue"></div>
+  <div class="blob-yellow"></div>
+  <div class="blob-purple"></div>
+
+  <!-- NAVBAR START -->
+  <nav class="navbar">
+
+    <a class="brand" href="#">
+      <div class="logo-box">
+        <span class="logo-letter">b</span>
+      </div>
+      <span class="brand-name">Bidly</span>
+    </a>
+
+    <div class="nav-links">
+      <a class="nav-link-active" href="#">Find work</a>
+      <a class="nav-link" href="#">Post a job</a>
+      <a class="nav-link" href="#">How it works</a>
+      <a class="nav-link" href="#">Pricing</a>
+    </div>
+
+    <div class="nav-actions">
+      <a class="btn-ghost" href="#">Log in</a>
+      <a class="btn-primary" href="#">
+        Get started
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"></path>
+          <path d="M13 6l6 6-6 6"></path>
+        </svg>
+      </a>
+    </div>
+
+  </nav>
+  <!-- NAVBAR END -->
+
+</div>
+
+</body>
+</html>
